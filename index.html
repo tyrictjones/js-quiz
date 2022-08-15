@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScrip Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div>
+            High Scores
+        </div>
+        <div>
+            Countdown Timer
+        </div>
+    </header>
+    <main>
+        <div class='welcome'>
+            <h2>JavaScript Challenge</h2>
+            <p>Here's a little quiz to test your knowledge on JavaScript fundamentals.
+                Try to answer all the questions before the timer runs out. 
+                Beware, an incorrect answer will subtract time from the clock.
+            </p>
+            <button id="start-quiz">Start Quiz</button>
+        </div>
+        <div id="question-box">
+            <h2 id="question-text">Question text</h2>
+            <ol>
+                <li id="choice1">Answer choice 1</li>
+                <li id="choice2">Answer choice 2</li>
+                <li id="choice3">Answer choice 3</li>
+                <li id="choice4">Answer choice 4</li>
+            </ol>
+            <p id="feedback"></p>
+        </div>
+        <div class="final">
+            <h2>Time Up!</h2>
+            <p>Your final score is</p>
+            <input type="text" placeholder="Enter Your Initials" />
+            <button>Submit</button>
+        </div>
+        <div class="high-scores">
+            <h2>High Scores</h2>
+            <div>
+                High Scores List
+            </div>
+            <button>Go Back / Restart</button>
+            <button>Clear High Scores</button>
+        </div>
+    </main>
+
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
