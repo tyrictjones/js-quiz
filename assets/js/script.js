@@ -27,6 +27,7 @@ var quizBank = [
 var startButtonEl = document.querySelector('#start-quiz');
 var questionBoxEl = document.querySelector('#question-box');
 var answerFeedbackEl = document.querySelector('#feedback');
+var quizProgress = 0;
 
 var questionText = document.querySelector('#question-text');
 var choice1 = document.querySelector('#choice1');
@@ -37,19 +38,29 @@ var choice4 = document.querySelector('#choice4');
 
 
 var startQuiz = function () {
-    //populate question content from array; eventually loadQuestion() function
-    questionText.textContent = quizBank[0].question;
-    choice1.textContent = quizBank[0].choices[0].text;
-    choice2.textContent = quizBank[0].choices[1].text;
-    choice3.textContent = quizBank[0].choices[2].text;
-    choice4.textContent = quizBank[0].choices[3].text;
+    //hide welcome div, display question-box div
 
-    choice1.setAttribute('data-correct', quizBank[0].choices[0].correct);
-    choice2.setAttribute('data-correct', quizBank[0].choices[1].correct);
-    choice3.setAttribute('data-correct', quizBank[0].choices[2].correct);
-    choice4.setAttribute('data-correct', quizBank[0].choices[3].correct);
+    //populate question content from array; eventually loadQuestion() function
+    loadQuestion(quizProgress);
 
     questionBoxEl.addEventListener('click', checkAnswer);
+};
+
+
+
+var loadQuestion = function(quizProgress) {
+    questionText.textContent = quizBank[quizProgress].question;
+    choice1.textContent = quizBank[quizProgress].choices[0].text;
+    choice2.textContent = quizBank[quizProgress].choices[1].text;
+    choice3.textContent = quizBank[quizProgress].choices[2].text;
+    choice4.textContent = quizBank[quizProgress].choices[3].text;
+
+    choice1.setAttribute('data-correct', quizBank[quizProgress].choices[0].correct);
+    choice2.setAttribute('data-correct', quizBank[quizProgress].choices[1].correct);
+    choice3.setAttribute('data-correct', quizBank[quizProgress].choices[2].correct);
+    choice4.setAttribute('data-correct', quizBank[quizProgress].choices[3].correct);
+
+    quizProgress++;
 };
 
 
