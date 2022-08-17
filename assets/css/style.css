@@ -1,0 +1,15 @@
+.welcome {
+    display: block;
+}
+
+#question-box {
+    display: none;
+}
+
+.final {
+    display: none;
+}
+
+.high-scores {
+    display: none;
+}

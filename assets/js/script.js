@@ -34,6 +34,7 @@ var quizBank = [
 //console.log(quizBank[1].question);
 //console.log(quizBank[1].choices[0].text);
 
+var welcomeEl = document.querySelector('.welcome');
 var startButtonEl = document.querySelector('#start-quiz');
 var questionBoxEl = document.querySelector('#question-box');
 var answerFeedbackEl = document.querySelector('#feedback');
@@ -50,9 +51,10 @@ var choice4 = document.querySelector('#choice4');
 
 var startQuiz = function () {
     //hide welcome div, display question-box div
+    welcomeEl.style.display = 'none';
+    questionBoxEl.style.display = 'block';
 
-    //populate question content from array with loadQuestion function 
-    
+    //populate question content from array with loadQuestion function
     loadQuestion(quizProgress);
     quizProgress++;
 
