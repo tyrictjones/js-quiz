@@ -18,6 +18,16 @@ var quizBank = [
             {text: '3.14', correct: 0},
             {text: '-100', correct: 0},
         ]
+    },
+    {
+        id: 2,
+        question: 'Third question in the quiz?',
+        choices: [
+            {text: 'first choice', correct: 1},
+            {text: 'second choice', correct: 0},
+            {text: 'third choice', correct: 0},
+            {text: 'fourth choice', correct: 0},
+        ]
     }
 ];
 
@@ -28,6 +38,7 @@ var startButtonEl = document.querySelector('#start-quiz');
 var questionBoxEl = document.querySelector('#question-box');
 var answerFeedbackEl = document.querySelector('#feedback');
 var quizProgress = 0;
+var quizTimer = 100;
 
 var questionText = document.querySelector('#question-text');
 var choice1 = document.querySelector('#choice1');
@@ -40,10 +51,13 @@ var choice4 = document.querySelector('#choice4');
 var startQuiz = function () {
     //hide welcome div, display question-box div
 
-    //populate question content from array; eventually loadQuestion() function
+    //populate question content from array with loadQuestion function 
     loadQuestion(quizProgress);
+    quizProgress++;
 
     questionBoxEl.addEventListener('click', checkAnswer);
+
+
 };
 
 
@@ -59,8 +73,6 @@ var loadQuestion = function(quizProgress) {
     choice2.setAttribute('data-correct', quizBank[quizProgress].choices[1].correct);
     choice3.setAttribute('data-correct', quizBank[quizProgress].choices[2].correct);
     choice4.setAttribute('data-correct', quizBank[quizProgress].choices[3].correct);
-
-    quizProgress++;
 };
 
 
@@ -77,6 +89,9 @@ var checkAnswer = function() {
     else {
         answerFeedbackEl.textContent = 'Incorrect';
     }
+
+    var clearVerification = function() {answerFeedbackEl.textContent = '';};
+    setTimeout(clearVerification, 2000);
 };
 
 
