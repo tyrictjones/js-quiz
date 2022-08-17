@@ -2,11 +2,11 @@
     display: block;
 }
 
-#question-box {
+.question-box {
     display: none;
 }
 
-.final {
+.end-quiz {
     display: none;
 }
 

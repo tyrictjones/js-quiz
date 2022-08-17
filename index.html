@@ -11,14 +11,12 @@
 <body>
     <header>
         <div>
-            High Scores
+            <a href='#'>High Scores</a>
         </div>
-        <div>
-            Countdown Timer
-        </div>
+        <div id='timer'></div>
     </header>
     <main>
-        <div class='welcome'>
+        <div class='welcome' id='welcome'>
             <h2>JavaScript Challenge</h2>
             <p>Here's a little quiz to test your knowledge on JavaScript fundamentals.
                 Try to answer all the questions before the timer runs out. 
@@ -26,7 +24,7 @@
             </p>
             <button id="start-quiz">Start Quiz</button>
         </div>
-        <div id="question-box">
+        <div class='question-box' id="question-box">
             <h2 id="question-text">Question text</h2>
             <ol>
                 <li id="choice1">Answer choice 1</li>
@@ -36,13 +34,13 @@
             </ol>
             <p id="feedback"></p>
         </div>
-        <div class="final">
-            <h2>Time Up!</h2>
+        <div class='end-quiz' id="end-quiz">
+            <h2>Quiz Over!</h2>
             <p>Your final score is</p>
             <input type="text" placeholder="Enter Your Initials" />
             <button>Submit</button>
         </div>
-        <div class="high-scores">
+        <div class='high-scores' id="high-scores">
             <h2>High Scores</h2>
             <div>
                 High Scores List
