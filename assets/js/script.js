@@ -52,11 +52,11 @@ var startQuiz = function () {
     //hide welcome div, display question-box div
 
     //populate question content from array with loadQuestion function 
+    
     loadQuestion(quizProgress);
     quizProgress++;
 
     questionBoxEl.addEventListener('click', checkAnswer);
-
 
 };
 
@@ -92,6 +92,13 @@ var checkAnswer = function() {
 
     var clearVerification = function() {answerFeedbackEl.textContent = '';};
     setTimeout(clearVerification, 2000);
+
+    if (quizProgress < quizBank.length) {
+        startQuiz();
+    }
+    else {
+        console.log('Quiz complete');
+    }
 };
 
 
