@@ -38,17 +38,15 @@ var questionBoxEl = document.querySelector('#question-box');
 var endQuizEl = document.querySelector('#end-quiz');
 var highScoresEl = document.querySelector('#high-scores');
 var answerFeedbackEl = document.querySelector('#feedback');
+var timerEl = document.querySelector('#timer');
 
 
-//the quizProgress lets us know which question we're on the quizBank object
+//the quizProgress lets us know which question we're on in the quizBank object
 var quizProgress = 0;
 
+//make the timer variable global so that multiple functions can access it
+var timer = 100
 
-//count down from a number and end the quiz if we reach 0 before finishing all the questions
-//create the timer variable here and dynamically populate it in the HTML as it changes
-var quizTimer = 100;
-var quizTimerEl = document.querySelector('#timer');
-quizTimerEl.textContent = quizTimer;
 
 
 //capture each element of the question li to later populate with text from the quizBank
@@ -64,7 +62,7 @@ var startQuiz = function () {
     //hide welcome div, show question div during the quiz; all divs start as display:none, change as needed
     welcomeEl.style.display = 'none';
     questionBoxEl.style.display = 'block';
-
+    
     //populate question content from array with loadQuestion function
     loadQuestion(quizProgress);
     quizProgress++;
@@ -72,6 +70,22 @@ var startQuiz = function () {
     //capture all clicks ont the question-box div, if a list-item is clicked check the answer
     questionBoxEl.addEventListener('click', checkAnswer);
 
+};
+
+
+
+var quizTimer = function() {
+
+    var countdown = setInterval(function() {
+        if (timer > 0) {
+            timer --;
+            timerEl.textContent = 'Time: ' + timer;
+        } else {
+            timerEl.textContent = 'Time: 0';
+            clearInterval(countdown);
+            endQuiz();
+        }
+    }, 1000);
 };
 
 
@@ -106,6 +120,7 @@ var checkAnswer = function() {
     }
     else {
         answerFeedbackEl.textContent = 'Incorrect';
+        timer = timer - 10;
     }
 
     var clearVerification = function() {answerFeedbackEl.textContent = '';};
@@ -128,3 +143,4 @@ var endQuiz = function() {
 
 
 startButtonEl.addEventListener('click', startQuiz);
+startButtonEl.addEventListener('click', quizTimer);//start timer on the same click that we start the quiz
