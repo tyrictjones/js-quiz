@@ -45,7 +45,7 @@ var timerEl = document.querySelector('#timer');
 var quizProgress = 0;
 
 //make the timer variable global so that multiple functions can access it
-var timer = 100
+var timer = 10
 
 
 
@@ -77,7 +77,7 @@ var startQuiz = function () {
 var quizTimer = function() {
 
     var countdown = setInterval(function() {
-        if (timer > 0) {
+        if (timer > 0 && quizProgress <= quizBank.length) {
             timer --;
             timerEl.textContent = 'Time: ' + timer;
         } else {
