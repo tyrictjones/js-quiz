@@ -11,7 +11,7 @@
 <body>
     <header>
         <div>
-            <a href='#'>High Scores</a>
+            <a href='./highscores.html'>High Scores</a>
         </div>
         <div id='timer'>Time: 100</div>
     </header>
@@ -25,28 +25,20 @@
             <button id="start-quiz">Start Quiz</button>
         </div>
         <div class='question-box' id="question-box">
-            <h2 id="question-text">Question text</h2>
+            <h2 id="question-text"></h2>
             <ol>
-                <li id="choice1">Answer choice 1</li>
-                <li id="choice2">Answer choice 2</li>
-                <li id="choice3">Answer choice 3</li>
-                <li id="choice4">Answer choice 4</li>
+                <li id="choice1"></li>
+                <li id="choice2"></li>
+                <li id="choice3"></li>
+                <li id="choice4"></li>
             </ol>
             <p id="feedback"></p>
         </div>
         <div class='end-quiz' id="end-quiz">
             <h2>Quiz Over!</h2>
-            <p>Your final score is</p>
-            <input type="text" placeholder="Enter Your Initials" />
-            <button>Submit</button>
-        </div>
-        <div class='high-scores' id="high-scores">
-            <h2>High Scores</h2>
-            <div>
-                High Scores List
-            </div>
-            <button>Go Back / Restart</button>
-            <button>Clear High Scores</button>
+            <p>Your score is <span id="score"></span></p>
+            <input class='initials' type="text" placeholder="Enter Your Initials" />
+            <button id="score-button" type="submit">Submit</button>
         </div>
     </main>
 

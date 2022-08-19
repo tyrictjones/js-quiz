@@ -39,13 +39,20 @@ var endQuizEl = document.querySelector('#end-quiz');
 var highScoresEl = document.querySelector('#high-scores');
 var answerFeedbackEl = document.querySelector('#feedback');
 var timerEl = document.querySelector('#timer');
+var scoreButtonEl = document.querySelector('#score-button');
 
 
 //the quizProgress lets us know which question we're on in the quizBank object
 var quizProgress = 0;
 
 //make the timer variable global so that multiple functions can access it
-var timer = 10
+var timer = 100;
+
+//create an empty object to hold the high scores
+var highScores = [];
+
+//variable to clear the timer from the endQuiz function if the user gets there before the timer runs out
+var endQuizIndicator = false;
 
 
 
@@ -77,14 +84,21 @@ var startQuiz = function () {
 var quizTimer = function() {
 
     var countdown = setInterval(function() {
-        if (timer > 0 && quizProgress <= quizBank.length) {
+        if (timer > 0) {
             timer --;
             timerEl.textContent = 'Time: ' + timer;
-        } else {
+        } 
+        else {
             timerEl.textContent = 'Time: 0';
             clearInterval(countdown);
             endQuiz();
         }
+
+        if (endQuizIndicator) {
+            clearInterval(countdown);
+        }
+
+        
     }, 1000);
 };
 
@@ -112,9 +126,7 @@ var checkAnswer = function() {
     //if a list-item / answer choice is clicked, check whether its data-correct attribute is correct(1) or incorrect(0)
     //if incorrect subtract 10 from the timer
     var targetEl = event.target;
-    console.log(targetEl);
     var verifyCorrect = targetEl.getAttribute('data-correct');
-    console.log(verifyCorrect);
     if (parseInt(verifyCorrect) === 1) {
         answerFeedbackEl.textContent = 'Correct!';
     }
@@ -123,8 +135,8 @@ var checkAnswer = function() {
         timer = timer - 10;
     }
 
-    var clearVerification = function() {answerFeedbackEl.textContent = '';};
-    setTimeout(clearVerification, 2000);
+    var clearFeedback = function() {answerFeedbackEl.textContent = '';};
+    setTimeout(clearFeedback, 2000);
 
     if (quizProgress < quizBank.length) {
         startQuiz();
@@ -138,9 +150,25 @@ var endQuiz = function() {
     questionBoxEl.style.display = 'none';
     endQuizEl.style.display = 'block';
 
+    endQuizIndicator = true;
+    
+    var highScore = timer;
+    document.querySelector('#score').textContent = highScore;
+
+    //scoreButtonEl.addEventListener('submit', saveScore(highScore));
+    
 };
+
+// var saveScore = function(highScore) {
+//     alert('Button works');
+//     var userInitials = document.querySelector('input').value;
+//     console.log(userInitials);
+//     var scoreAndInitials = {name: userInitials, score: highScore};
+//     highScores.push(scoreAndInitials);
+//     localStorage.setItem('scores', JSON.stringify(highScores));
+// };
 
 
 
 startButtonEl.addEventListener('click', startQuiz);
-startButtonEl.addEventListener('click', quizTimer);//start timer on the same click that we start the quiz
+startButtonEl.addEventListener('click', quizTimer); 
