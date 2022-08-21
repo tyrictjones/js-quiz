@@ -38,6 +38,7 @@ var questionBoxEl = document.querySelector('#question-box');
 var endQuizEl = document.querySelector('#end-quiz');
 var highScoresEl = document.querySelector('#high-scores');
 var scoreButtonEl = document.querySelector('#score-button');
+var scoresLinkEl = document.querySelector('#scores-link');
 
 
 
@@ -70,6 +71,7 @@ var startQuiz = function () {
     //hide welcome div, show question div during the quiz; all divs start as display:none, change as needed
     welcomeEl.style.display = 'none';
     questionBoxEl.style.display = 'block';
+    highScoresEl.style.display = 'none';
     
     //populate question content from array with loadQuestion function
     loadQuestion(quizProgress);
@@ -154,6 +156,7 @@ var endQuiz = function() {
     questionBoxEl.style.display = 'none';
     endQuizEl.style.display = 'block';
 
+
     endQuizIndicator = true;
 
     if (timer === 0) {
@@ -169,7 +172,9 @@ var endQuiz = function() {
 
 var saveScore = function() {
     event.preventDefault();
-    console.log(timer);
+    highScoresEl.style.display = 'block';
+    endQuizEl.style.display = 'none';
+    
 
     var userInitials = document.querySelector('input').value;
 
@@ -178,6 +183,7 @@ var saveScore = function() {
     localStorage.setItem('scores', JSON.stringify(highScores));
 
     createScoreList();
+    showHighScores();
 };
 
 var createScoreList = function() {
@@ -186,9 +192,14 @@ var createScoreList = function() {
     for (i = 0; i < highScores.length; i++) {
         var scoreListItem = document.createElement('li');
         scoreListItem.textContent = highScores[i].user + '  -  ' + highScores[i].score;
-        console.log(scoreListItem);
-        console.log(scoreList);
+        scoreList.appendChild(scoreListItem);
     }
+};
+
+var showHighScores = function() {
+    highScoresEl.style.display = 'block';
+    welcomeEl.style.display = 'none';
+    
 };
 
 var loadScores = function() {
@@ -209,5 +220,6 @@ var loadScores = function() {
 startButtonEl.addEventListener('click', startQuiz);
 startButtonEl.addEventListener('click', quizTimer);
 scoreButtonEl.addEventListener('click', saveScore); 
+scoresLinkEl.addEventListener('click', showHighScores);
 
 loadScores();
