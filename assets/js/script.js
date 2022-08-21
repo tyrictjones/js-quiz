@@ -170,6 +170,38 @@ var endQuiz = function() {
 var saveScore = function() {
     event.preventDefault();
     console.log(timer);
+
+    var userInitials = document.querySelector('input').value;
+
+    highScores.push({user: userInitials, score: timer});
+
+    localStorage.setItem('scores', JSON.stringify(highScores));
+
+    createScoreList();
+};
+
+var createScoreList = function() {
+    var scoreList = document.querySelector('#score-list');
+
+    for (i = 0; i < highScores.length; i++) {
+        var scoreListItem = document.createElement('li');
+        scoreListItem.textContent = highScores[i].user + '  -  ' + highScores[i].score;
+        console.log(scoreListItem);
+        console.log(scoreList);
+    }
+};
+
+var loadScores = function() {
+    var savedScores = localStorage.getItem('scores');
+
+    if (savedScores === null) {
+        return false;
+    }
+
+    savedScores = JSON.parse(savedScores);
+    highScores = savedScores;
+
+    createScoreList();
 };
 
 
@@ -177,3 +209,5 @@ var saveScore = function() {
 startButtonEl.addEventListener('click', startQuiz);
 startButtonEl.addEventListener('click', quizTimer);
 scoreButtonEl.addEventListener('click', saveScore); 
+
+loadScores();
