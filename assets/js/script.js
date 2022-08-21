@@ -32,14 +32,15 @@ var quizBank = [
 ];
 
 //capture each of the divs in the main section so that we can hide/display them as needed
-var welcomeEl = document.querySelector('#welcome');
 var startButtonEl = document.querySelector('#start-quiz');
+var welcomeEl = document.querySelector('#welcome');
 var questionBoxEl = document.querySelector('#question-box');
 var endQuizEl = document.querySelector('#end-quiz');
 var highScoresEl = document.querySelector('#high-scores');
-var answerFeedbackEl = document.querySelector('#feedback');
-var timerEl = document.querySelector('#timer');
 var scoreButtonEl = document.querySelector('#score-button');
+
+
+
 
 
 //the quizProgress lets us know which question we're on in the quizBank object
@@ -82,6 +83,7 @@ var startQuiz = function () {
 
 
 var quizTimer = function() {
+    var timerEl = document.querySelector('#timer');
 
     var countdown = setInterval(function() {
         if (timer > 0) {
@@ -123,6 +125,8 @@ var loadQuestion = function(quizProgress) {
 
 
 var checkAnswer = function() {
+    var answerFeedbackEl = document.querySelector('#feedback');
+    
     //if a list-item / answer choice is clicked, check whether its data-correct attribute is correct(1) or incorrect(0)
     //if incorrect subtract 10 from the timer
     var targetEl = event.target;
@@ -131,7 +135,7 @@ var checkAnswer = function() {
         answerFeedbackEl.textContent = 'Correct!';
     }
     else {
-        answerFeedbackEl.textContent = 'Incorrect';
+        answerFeedbackEl.textContent = 'Incorrect!';
         timer = timer - 10;
     }
 
@@ -151,24 +155,25 @@ var endQuiz = function() {
     endQuizEl.style.display = 'block';
 
     endQuizIndicator = true;
-    
-    var highScore = timer;
-    document.querySelector('#score').textContent = highScore;
 
-    //scoreButtonEl.addEventListener('submit', saveScore(highScore));
-    
+    if (timer === 0) {
+        document.querySelector('#score-form').style.display = 'none';
+        document.querySelector('#display-score').textContent = 'You did not get a high score.'
+    }
+    else {
+        var highScore = timer;
+        document.querySelector('#display-score').textContent = 'Your score is ' + highScore;
+    }
+
 };
 
-// var saveScore = function(highScore) {
-//     alert('Button works');
-//     var userInitials = document.querySelector('input').value;
-//     console.log(userInitials);
-//     var scoreAndInitials = {name: userInitials, score: highScore};
-//     highScores.push(scoreAndInitials);
-//     localStorage.setItem('scores', JSON.stringify(highScores));
-// };
+var saveScore = function() {
+    event.preventDefault();
+    console.log(timer);
+};
 
 
 
 startButtonEl.addEventListener('click', startQuiz);
-startButtonEl.addEventListener('click', quizTimer); 
+startButtonEl.addEventListener('click', quizTimer);
+scoreButtonEl.addEventListener('click', saveScore); 

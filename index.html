@@ -36,9 +36,12 @@
         </div>
         <div class='end-quiz' id="end-quiz">
             <h2>Quiz Over!</h2>
-            <p>Your score is <span id="score"></span></p>
-            <input class='initials' type="text" placeholder="Enter Your Initials" />
-            <button id="score-button" type="submit">Submit</button>
+            <p id="display-score"></p>
+            <form id="score-form">
+                <input id='initials' type="text" placeholder="Enter Your Initials" />
+                <button id="score-button" type="submit">Submit</button>
+            </form>
+            <p><a href='./index.html'>Play Again</a></p>
         </div>
     </main>
 
