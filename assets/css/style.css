@@ -3,6 +3,9 @@
     text-align: center;
 }
 
+/* the main page sections will all have a default display value of 'none' 
+which will change as the user moves through the quiz */
+
 .welcome {
     display: block;
     margin-top: 50px;
@@ -25,10 +28,25 @@
     margin: 0 auto;
 }
 
+/*  ******************************************  */
+
+.btn {
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    background-color: #4287f5;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 header {
     display: flex;
     justify-content: space-between;
     margin: 10px;
+}
+
+#scores-link {
+    text-decoration:underline
 }
 
 .welcome p {
@@ -51,9 +69,20 @@ ol li:hover {
     border-radius: 5px;
 }
 
+ul li {
+    list-style-type:disc;
+}
+
+
+/* make highly visible feedback text appear after user selects an answer */
 #feedback {
     color: red;
     font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
 }
 
 
