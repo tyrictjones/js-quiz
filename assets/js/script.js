@@ -266,7 +266,7 @@ var saveScore = function() {
     // save high scores to local storage so that they persist
     localStorage.setItem('scores', JSON.stringify(highScores));
 
-    loadScores();
+    createScoreList();
 };
 
 
@@ -302,6 +302,7 @@ var loadScores = function() {
 // get to the high scores list if you're not on the endQuiz function
 var showHighScores = function() {
     highScoresEl.style.display = 'block';
+    questionBoxEl.style.display = 'none';
     welcomeEl.style.display = 'none';
     
 };
